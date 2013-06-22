@@ -1,0 +1,145 @@
+body{
+	/*background-color:#1A474E;*/
+	background-color:#F0EEEF;
+	color: #000;
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+	
+}
+
+#wrapper {
+	width:960px;
+	min-height:400px;
+	margin:0 auto;
+	background:#fff;
+}
+
+.txtbox, textarea, .btn {
+	padding:4px;
+	width:300px;
+	height:30px;
+	border-radius:3px;
+	border:1px solid #ccc;
+}
+textarea {
+	height:100px;
+	resize:none;
+	margin-bottom:15px;
+}
+.btn {
+	font-weight:bold;
+}
+.btn:hover {
+	text-decoration:underline;
+	cursor:pointer;	
+}
+
+#container{
+	color: rgb(111, 110, 110);
+	padding-left: 10%;
+	text-align: center;
+}
+
+#header{
+	padding-top: 190px;
+alignment-baseline: central;	
+}
+
+
+#main{
+	font-weight: 300;
+}
+
+#descripcion h1{	
+	text-align: center;	
+	font-family: "Open Sans",Arial,sans-serif;
+	padding-right: 10%;
+	padding-bottom: 20px;
+	font-weight: 400;
+	font-size: 46px;
+	line-height: 50px;
+	margin-bottom: 14px;
+}
+
+#suscribe{
+
+	float: inherit;
+	width: 90%;
+	background-color:  #1A474E;
+	color: #fff;
+	padding: 25px 15px 25px 15px;
+     	left:50%;
+     	margin:0 0 0 8%;
+}
+
+#suscribe p{
+	font-size: 15px;
+}
+
+#info{
+	padding-top: 0%;
+	padding-left: 5%;	
+	position: absolute;
+}
+#cont{
+	padding-left: 10%;
+
+}
+.info-tit{
+	color: rgb(255, 114, 103);
+	text-align: center;
+}
+.mpo{
+	width: 322.6px;
+	float: left;
+	float: left;
+}
+.mpo p{
+	width: 292.6px;
+	font-size: 14px;
+	color: #625e58;
+	text-align: justify;
+	padding: 15px 15px 15px;
+}
+#footer{
+	
+	padding-top: 20%;
+}
+#footer p{
+	text-align: center;
+}
+
+
+#logo{
+	text-align: center;
+}
+
+input[type="email"]{
+	border:1px solid #ccc;
+	padding:6px 4px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	font:13px "Open Sans",Arial,sans-serif;
+	color:#777;
+	margin:0;
+	width:210px;
+	max-width:100%;
+	margin-bottom:20px;
+	background:#fff;
+	position: static;
+
+}
+
+
+
+input[type="submit"]{
+	background:#42BA5D;
+	border-left:none !important;
+	color:white;font-size:16px;
+	font-style:"normal";
+	text-transform:uppercase;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+}

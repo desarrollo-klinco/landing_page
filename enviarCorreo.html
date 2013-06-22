@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="style/css2.css" />
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+
+var ajax = {
+
+	send: function(){
+	
+		var userName = $("input[name=name]").val();
+		var userEmail = $("input[name=email]").val();
+		var userComments = $("textarea").val();
+		
+		if (userName == "" || userEmail == "" || userComments == ""){
+			alert("FORMULARIO NO COMPLETO");
+		}else{
+			ajax.SetText("Sending...");
+			$.post("sendmail.php", {name: userName, email: userEmail, comments: userComments}
+			, function (data){
+			
+				if (data == "true"){
+					alert("Mensaje Enviado");
+				}else{
+					alert(data);
+				}
+			});
+		
+		}
+	
+	},
+	SetText: function(text){
+		$("input[type=button]").val(text);
+	}
+}
+
+
+</script>
+</head>
+
+
+<body>
+
+	<div id="wrapper">
+		<div id="title">
+			<p>Comentarios Klinco</p>
+		</div>
+		<div id="content">
+			<p>Nombre:<br />
+			<input type="text" class="txtbox" name="name" placeholder="Name"></p>
+			<p>Correo Electr&oacutenico:<br />
+			<input type="text" class="txtbox" name="email" placeholder="Email"></p>
+			<p>Comentarios:<br />
+			<textarea name="comments"></textarea></p>
+			<input type="button" value="Send mail" onClick="ajax.send()" class="btn">
+		</div>
+		 <div id="footer">
+			<p></p>
+		</div> 
+	</div>
+
+
+</body>
+</html>
