@@ -11,7 +11,7 @@ body{
 	width:960px;
 	min-height:400px;
 	margin:0 auto;
-	background:#fff;
+	background:#F0EEEF;
 }
 
 .txtbox, textarea, .btn {
@@ -36,7 +36,7 @@ textarea {
 
 #container{
 	color: rgb(111, 110, 110);
-	padding-left: 10%;
+	padding-left: 0%;
 	text-align: center;
 }
 
@@ -78,7 +78,7 @@ alignment-baseline: central;
 
 #info{
 	padding-top: 0%;
-	padding-left: 5%;	
+	padding-left: 0%;	
 	position: absolute;
 }
 #cont{
