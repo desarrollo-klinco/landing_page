@@ -20,6 +20,8 @@
 		<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>	
 		<!-- javascript slicebox -->
 		<script type="text/javascript" src="js/jquery.slicebox.js"></script>
+		<!-- javascript wait send -->
+		<script type="text/javascript" src="js/jquery.blockUI.js"></script>
 		
 		<script src='http://connect.facebook.net/en_US/all.js'></script>
 		
@@ -31,10 +33,10 @@
 		{
 			$("#dialog-modal").dialog(
 			{
-				width: 400,
-				height: 300,
-				title: "Gracias por su Contacto",
-				buttons: { "Compartir Facebook": function() { facebook_link(); }, "Compartir Twitter": function() { twitter_link(); } },
+				width: 580,
+				height: 480,
+				//title: "Gracias por su Contacto",
+				//buttons: { "Compartir Facebook": function() { facebook_link(); }, "Compartir Twitter": function() { twitter_link(); } },
 				open: function(event, ui)
 				{
 					var textarea = $('<textarea style="height: 276px;">');
@@ -78,10 +80,20 @@
 		
 		function facebook_link(){
 		
-		window.open("https://www.facebook.com/dialog/feed?app_id=264532197005460&link=https://developers.facebook.com/docs/reference/dialogs/&picture=http://fbrell.com/f8.jpg&name=Edsel%20Serrano&caption=Reference%20Documentation&description=Using%20Dialogs%20to%20interact%20with%20users.&redirect_uri=http://klinco.klincoapp.co",'','width=800,height=500');
+		window.open("https://www.facebook.com/dialog/feed?app_id=1384839841732439&link=http://www.klinco.co/&picture=http://mejorcalidaddevida.com/images/LP_Klinco_logo.png&name=KlincoApp&caption=Reference%20Documentation&description=Using%20Dialogs%20to%20interact%20with%20users.&redirect_uri=http://klinco.co/graciasFacebook.html",'','width=800,height=500');
 		}
 		
 		</script>
+		
+		<script>
+		
+		function comentarios_link(){
+		
+		window.open("feedback.html",'','width=800,height=500');
+		}
+		
+		</script>
+		
 		
 		<!-- componente para la animación de imagenes -->
 		<script type="text/javascript">
@@ -134,11 +146,13 @@
 				if (userEmail == ""){
 					alert("FORMULARIO NO COMPLETO");
 				}else{
-					ajax.SetText("Sending...");
+					ajax.SetText("Enviando...");
 					$.post("sendmail_index.php", {email: userEmail}
 					, function (data){
 						if (data == "true"){
-							alert("Mensaje Enviado");
+							$.unblockUI();
+							//alert("Mensaje Enviado");
+							showDialog();
 							$("input[name=email]").val("");
 						}else{
 							alert(data);
@@ -147,8 +161,20 @@
 				}
 			},
 			SetText: function(text){
-				$("input[type=button]").val(text);
-			}
+				 
+        $.blockUI({ message: text, css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } }); 
+ 
+        //setTimeout($.unblockUI, 2000); 
+		}
+			
 		}
 		</script>
 	</head>
@@ -163,32 +189,68 @@
 						<div class="wrapper">
 							<ul id="sb-slider" class="sb-slider">
 								<li>
-									<a href="#" target="_blank"><img src="images/1.png" alt="image1" width="450px" height="550px"/></a>
+									<a href="#" target="_blank"><img src="images/screens/1.png" alt="image1" width="250px" height="400px"/></a>
 								</li>
 								<li>
-									<a href="#" target="_blank"><img src="images/2.png" alt="image2" width="450px" height="550px" /></a>
+									<a href="#" target="_blank"><img src="images/screens/2.png" alt="image2" width="250px" height="400px" /></a>
 								</li>
 								<li>
-									<a href="#" target="_blank"><img src="images/3.png" alt="image1" width="450px" height="550px"/></a>
+									<a href="#" target="_blank"><img src="images/screens/3.png" alt="image1" width="250px" height="400px"/></a>
 								</li>
 								<li>
-									<a href="#" target="_blank"><img src="images/4.png" alt="image1" width="450px" height="550px"/></a>
-								</li>
-								<li>
-									<a href="#" target="_blank"><img src="images/5.png" alt="image1" width="450px" height="550px"/></a>
-								</li>
-								<li>
-									<a href="#" target="_blank"><img src="images/6.png" alt="image1" width="450px" height="550px"/></a>
+									<a href="#" target="_blank"><img src="images/screens/4.png" alt="image1" width="250px" height="400px"/></a>
 								</li>
 							</ul>
 						</div><!-- /wrapper -->
 					</td>
-				<td>
+				<td style="width: 50%;">
 			<div id="logo">
-				<img id="img_logo" src="img/klinco_logo oscuro-04.png" width="300px">
+				<img id="img_logo" src="images/LP_Klinco_logo.png" width="300px">
 			</div>
+			<br>
 			
-			<div id="suscribe">
+			<img src="/images/LP_ingresa_tu_mail.png" />
+			<img src="/images/LP_boton_verde_de_enviar.png" class="boton_sus" onclick="ajax.send();" alt="Envia email"/>
+			<input type="email_sus" class="txtbox" id="email" name="email" placeholder="Tu email aquí" required="required">
+			
+			<img src="/images/LP_quieres_mas_klincs.png" />
+			<br>
+			<br>
+			<table width="100%">
+			<tr>
+				<td width="30%">
+					<img src="/images/LP_logo_fcb.png" class="compartir" onclick="facebook_link();"/>
+				
+				</td>
+				<td width="30%">
+					<img src="/images/LP_logo_twitter.png" class="compartir" onclick="twitter_link();" />
+				
+				</td>
+				<td width="30%">
+					<img src="/images/LP_logo_survey.png" />
+				
+				</td>
+			
+			
+			</tr>
+			
+					<td width="30%">
+					<img src="/images/LP_mas_100_klincs.png"  />
+				
+				</td>
+				<td width="30%">
+					<img src="/images/LP_mas_100_klincs.png"  />
+				
+				</td>
+				<td width="30%">
+					<img src="/images/LP_mas_100_klincs.png"  />
+				
+				</td>
+			
+			
+			</table>
+			
+			<!--<div id="suscribe">
 					<div id="cont">
 						<p>Ingresa tu email para notificarte noticias de Klinco</p>	
 							<input type="email" class="txtbox" id="email" name="email" placeholder="Tu email aquí" required="required">
@@ -196,22 +258,20 @@
 							<div id="info" > </div>
 						<div id="respuesta"></div>
 					</div>
-				</div>
+				</div> -->
 				
-				<p id='msg'></p>
-				
-				
+				<!--<p id='msg'></p>
 				
 				
 				
 				<a href="#" onclick="showDialog();" > Click HOLA </a><br>
 				<a href="https://www.facebook.com/dialog/feed?app_id=264532197005460&link=https://developers.facebook.com/docs/reference/dialogs/&picture=http://fbrell.com/f8.jpg&name=Edsel%20Serrano&caption=Reference%20Documentation&description=Using%20Dialogs%20to%20interact%20with%20users.&redirect_uri=http://klinco.klincoapp.co" > Facebook </a>
 				<br><a href="#" onclick="postToFeed();">send feed</a>
-				
+				-->
 				<div id="dialog-modal" title="Gracias" style="display: none;">
 				
-				<p> GRACIAS POR ENVIAR TU CORREO </p> 
-				
+				 
+				<img src="/images/LP_VENTANA_REGISTRO.png"  width="500px" height="400px" />
 				
 				<!-- <a href="https://twitter.com/intent/tweet?screen_name=pretxelcom" class="twitter-mention-button" data-size="large">Tweet to @pretxelcom</a> -->
 
@@ -229,6 +289,22 @@
 				</div>
 				
 				
+				<table width="100%">
+				<tr>
+				<td width="20%">
+					<img src="/images/LP_sensei.png	" />
+				</td>
+				
+				<td width="80%">
+					<img src="/images/LP_burbuja_texto.png" />
+				</td>
+				</tr>
+				
+				
+				</table>
+				
+				
+			
 				
 				<div id="info" align="left">
 					<div id="seccion-uno" class="mpo">
@@ -262,7 +338,15 @@
 				
 				<div id="footer">
 				<p>
-					¿Tienes preguntas o comentarios?<a href="feedback.html"> ¡Háznoslo saber!</a>
+					
+					<!-- <div class="mandaCorreo"></div> -->
+					
+					
+					
+				
+				
+				
+					¿Tienes preguntas o comentarios? <a href="" onclick="comentarios_link();"> ¡Háznoslo saber!</a>
 				</p>
 				<p>
 					2013 - Klinco 

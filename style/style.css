@@ -14,17 +14,38 @@ body{
 	background:#F0EEEF;
 }
 
+#wrapperComment {
+	width:400px;
+	min-height:400px;
+	margin:0 auto;
+	background:#F0EEEF;
+}
+
 .txtbox, textarea, .btn {
 	padding:4px;
 	width:300px;
 	height:30px;
-	border-radius:3px;
+	border-radius:6px;
 	border:1px solid #ccc;
 }
 textarea {
+	width: 400px;
 	height:100px;
 	resize:none;
-	margin-bottom:15px;
+	border:1px solid #ccc;
+	padding:6px 4px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	font:13px "Open Sans",Arial,sans-serif;
+	color:#777;
+	margin:0;
+	max-width:100%;
+	background:#fff;
+	position: static;
+	border-radius: 6px;
+	text-align: center;
+	
 }
 .btn {
 	font-weight:bold;
@@ -98,7 +119,7 @@ alignment-baseline: central;
 	width: 292.6px;
 	font-size: 14px;
 	color: #625e58;
-	text-align: justify;
+	text-align: left;
 	padding: 15px 15px 15px;
 }
 #footer{
@@ -125,12 +146,30 @@ input[type="email"]{
 	margin:0;
 	width:210px;
 	max-width:100%;
-	margin-bottom:20px;
 	background:#fff;
 	position: static;
+	border-radius: 6px;
+	text-align: center;
 
 }
 
+input[name="nombre"]{
+	border:1px solid #ccc;
+	padding:6px 4px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	font:13px "Open Sans",Arial,sans-serif;
+	color:#777;
+	margin:0;
+	width:210px;
+	max-width:100%;
+	background:#fff;
+	position: static;
+	border-radius: 6px;
+	text-align: center;
+
+}
 
 
 input[type="submit"]{
@@ -142,4 +181,55 @@ input[type="submit"]{
 	appearance:none;
 	-moz-appearance:none;
 	-webkit-appearance:none;
+}
+
+
+.mandaCorreo {
+background-image:url(/images/LP_ingresa_tu_mail.png);
+background-position:top left;
+background-repeat:no-repeat;
+display:block;
+height:150px;
+}
+
+
+#mandaCorr {
+  position: relative;
+padding-top: 10px;
+bottom: 68px;
+width: 250px;
+right: 20px;
+}
+
+input[type="email_sus"]{
+	border:1px solid #ccc;
+	padding:6px 4px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	font:13px "Open Sans",Arial,sans-serif;
+	color:#777;
+	margin:0;
+	width:250px;
+	max-width:100%;
+	background:#fff;
+	border-radius: 6px;
+	text-align: center;
+	position: relative;
+	padding-top: 10px;
+	bottom: 68px;
+	right: 40px;
+
+}
+
+.compartir{
+
+cursor: pointer;
+}
+
+.boton_sus{
+cursor: pointer;
+position: relative;
+bottom: 27px;
+left: -70px;
 }

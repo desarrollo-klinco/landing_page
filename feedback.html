@@ -2,72 +2,71 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<title>Klinco   Cr&eacutedito - Educaci&oacuten Financiera - Comentarios</title>
 		<link rel="stylesheet" type="text/css" href="style/style.css">
-
-		
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-		<title>Klinco   Crédito - Educación Financiera - Sugerencias</title>
-	<script>
-function showHint()
-{
+		
+		<!-- API jquery -->
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.js"></script>	
+		<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+		
 
-var msj = document.getElementById("message").value;
-var email = document.getElementById("email").value;
-
-if (msj.length==0)
-  { 
-  //document.getElementById("email").innerHTML="";
-  return;
-  }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.status==200)
-    {
-    //document.getElementById("email").innerHTML=xmlhttp.responseText;
-	var respon = xmlhttp.responseText;
-	var ult = respon.charAt(str.length-1)
-	alert(respon.length);
-	if (ult == "1"){
-			alert("Correo Enviado");
-		}else{
-			alert("Upss, Hay problemas en servidor " + respon);
+<script>
+		var ajax = {
+			send: function(){
+				var userEmail = $("input[name=email]").val();
+				var userName = $('input[name=nombre]').val();
+				var userComments = $("textarea").val();
+				if (userEmail == "" || userComments == "" || userName == ""){
+					alert("FORMULARIO NO COMPLETO");
+				}else{
+					ajax.SetText("Sending...");
+					$.post("sendmail_comentario.php", {email: userEmail, comentario: userComments, nombre:userName}
+					, function (data){
+						if (data == "true"){
+							alert("Mensaje Enviado");
+							$("input[name=email]").val("");
+							$("textarea").val("");
+						}else{
+							alert(data);
+						}
+					});
+				}
+			},
+			SetText: function(text){
+				$("input[type=button]").val(text);
+			}
 		}
-		alert("Upss, Hay problemas en servidor " + respon);
-	}
-  }
-xmlhttp.open("GET","email.php?msj="+msj+"?email="+email,false);
-xmlhttp.send();
-}
-</script>
+		</script>
+	
+	
 	
 	
 	</head>
 	<body>
 	
-	<div id="container" align="center">
+	
+	
+	<div id="container">
 	
 	<div id="logo">
 				<img id="img_logo" src="img/logo_full.png" width="300px">
 			</div>
-		
-	 <form method="post">
-  Correo Electr&oacutenico: <input name="email" id="email" type="text" /><br />
-<br>
-  Sugerencia:<br />
-  <textarea name="message" id="message" rows="15" cols="40"></textarea><br />
+	
+		 
+			Nombre: <br><input class="txtbox" id="nombre" name="nombre" placeholder="Introduce t&uacute Nombre" required="required"><br />
+			<br>
+<!--	Nombre: <input class="txtbox" id="nombre" name="nombre" placeholder="Agrega tu Nombre" required="required"><br />  -->
+	Correo Electr&oacutenico: <br><input type="email" class="txtbox" id="email" name="email" placeholder="Email aqu&iacute" required="required"><br />
+	<br>
+	Comentario:<br />
+	<textarea name="comentario"  id="comentario" rows="15" cols="40" placeholder="Agrega un Comentario"></textarea><br />
 
-  <input type="submit" value="Enviar" onclick="showHint();" />
-</form> 
+  <input type="submit" value="Enviar" onclick="ajax.send();" />
+	
+	</div>
 
-</div>
 
 </body>
 </html>
