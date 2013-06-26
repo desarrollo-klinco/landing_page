@@ -10,7 +10,8 @@
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.js"></script>	
 		<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
-		
+		<!-- javascript wait send blockUI.js -->
+		<script type="text/javascript" src="js/jquery.blockUI.js"></script>
 
 <script>
 		var ajax = {
@@ -21,21 +22,40 @@
 				if (userEmail == "" || userComments == "" || userName == ""){
 					alert("FORMULARIO NO COMPLETO");
 				}else{
-					ajax.SetText("Sending...");
+					ajax.SetText("Enviando...");
 					$.post("sendmail_comentario.php", {email: userEmail, comentario: userComments, nombre:userName}
 					, function (data){
 						if (data == "true"){
+							$.unblockUI();
 							alert("Mensaje Enviado");
+							$("input[name=nombre]").val("");
 							$("input[name=email]").val("");
 							$("textarea").val("");
 						}else{
-							alert(data);
+							 $.unblockUI();
+							 $.blockUI({ 
+							theme:     true, 
+							title:    'Uppss', 
+							message:  '<p>Error al enviar.</p>', 
+							timeout:   3000 
+						}); 
 						}
 					});
 				}
 			},
 			SetText: function(text){
-				$("input[type=button]").val(text);
+			
+				  $.blockUI({ message: text, css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } });
+			
+				//$("input[type=button]").val(text);
 			}
 		}
 		</script>
@@ -51,7 +71,7 @@
 	<div id="container">
 	
 	<div id="logo">
-				<img id="img_logo" src="img/logo_full.png" width="300px">
+				<img id="img_logo" src="images/logo_full.png" width="300px">
 			</div>
 	
 		 

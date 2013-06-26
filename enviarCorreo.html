@@ -21,9 +21,15 @@ var ajax = {
 			, function (data){
 			
 				if (data == "true"){
-					alert("Mensaje Enviado");
+					$.unblockUI();
 				}else{
-					alert(data);
+					$.unblockUI();
+							 $.blockUI({ 
+							theme:     true, 
+							title:    'Uppss', 
+							message:  '<p>Error al enviar.</p>', 
+							timeout:   3000 
+						}); 
 				}
 			});
 		

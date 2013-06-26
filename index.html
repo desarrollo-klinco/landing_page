@@ -20,11 +20,27 @@
 		<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>	
 		<!-- javascript slicebox -->
 		<script type="text/javascript" src="js/jquery.slicebox.js"></script>
-		<!-- javascript wait send -->
+		<!-- javascript wait send blockUI.js -->
 		<script type="text/javascript" src="js/jquery.blockUI.js"></script>
 		
 		<script src='http://connect.facebook.net/en_US/all.js'></script>
 		
+		
+		<script>
+		
+			 function validar_email(valor)
+		{
+			// creamos nuestra regla con expresiones regulares.
+			var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+			// utilizamos test para comprobar si el parametro valor cumple la regla
+			if(filter.test(valor))
+				return true;
+			else
+				return false;
+		}
+		
+		
+		</script>
 		
 		
 		<!-- componente jquery Dialog -->
@@ -67,33 +83,25 @@
 		</script>
 		
 		<script>
-		
 		function twitter_link(){
-		
-		window.open("https://twitter.com/intent/tweet?screen_name=pretxelcom",'','width=600,height=400');
+			window.open("https://twitter.com/intent/tweet?screen_name=klincoapp&text=registrate%20para%20tu%20educaci%C3%B3n%20financiera",'','width=600,height=400');
 		}
 		</script>
 		
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 		
 		<script>
-		
 		function facebook_link(){
-		
-		window.open("https://www.facebook.com/dialog/feed?app_id=1384839841732439&link=http://www.klinco.co/&picture=http://mejorcalidaddevida.com/images/LP_Klinco_logo.png&name=KlincoApp&caption=Reference%20Documentation&description=Using%20Dialogs%20to%20interact%20with%20users.&redirect_uri=http://klinco.co/graciasFacebook.html",'','width=800,height=500');
+			window.open("https://www.facebook.com/dialog/feed?app_id=1384839841732439&link=http://www.klinco.net/&picture=http://www.klinco.net/images/LP_Klinco_logo.png&name=Klinco&caption=Obtén%20educación%20financiera%20y%20accede%20a%20tu%20crédito%20ideal&description=Forma%20parte%20de%20Klinco,%20¡regístrate%20ya!.&redirect_uri=http://klinco.net/graciasFacebook.html",'','width=800,height=500');
 		}
-		
 		</script>
+		
 		
 		<script>
-		
 		function comentarios_link(){
-		
-		window.open("feedback.html",'','width=800,height=500');
+			window.open("feedback.html",'','width=800,height=500');
 		}
-		
 		</script>
-		
 		
 		<!-- componente para la animación de imagenes -->
 		<script type="text/javascript">
@@ -144,9 +152,17 @@
 			send: function(){
 				var userEmail = $("input[name=email]").val();
 				if (userEmail == ""){
-					alert("FORMULARIO NO COMPLETO");
+					 $.blockUI({ 
+							theme:     true, 
+							title:    'Advertencia', 
+							message:  '<p>Email no capturado.</p>', 
+							timeout:   3000 
+						}); 
 				}else{
-					ajax.SetText("Enviando...");
+				
+					if(validar_email($("input[name=email]").val())){
+						
+						ajax.SetText("Enviando...");
 					$.post("sendmail_index.php", {email: userEmail}
 					, function (data){
 						if (data == "true"){
@@ -155,9 +171,28 @@
 							showDialog();
 							$("input[name=email]").val("");
 						}else{
-							alert(data);
+							 $.unblockUI();
+							 alert(data);
+							 $.blockUI({ 
+							theme:     true, 
+							title:    'Uppss', 
+							message:  '<p>Error al enviar.</p>', 
+							timeout:   3000 
+						}); 
 						}
 					});
+						
+					}else{
+						
+						//alert("Email no valido");
+						 $.blockUI({ 
+							theme:     true, 
+							title:    'Advertencia', 
+							message:  '<p>Email no valido.</p>', 
+							timeout:   3000 
+						}); 
+					}
+					
 				}
 			},
 			SetText: function(text){
@@ -187,23 +222,23 @@
 				<tr>
 					<td>
 						<div class="wrapper">
-							<ul id="sb-slider" class="sb-slider">
+							<center><ul id="sb-slider" class="sb-slider">
 								<li>
-									<a href="#" target="_blank"><img src="images/screens/1.png" alt="image1" width="250px" height="400px"/></a>
+									<img src="images/screens/1.png" alt="image1" width="220px" height="400px"/>
 								</li>
 								<li>
-									<a href="#" target="_blank"><img src="images/screens/2.png" alt="image2" width="250px" height="400px" /></a>
+									<img src="images/screens/2.png" alt="image2" width="220px" height="400px" />
 								</li>
 								<li>
-									<a href="#" target="_blank"><img src="images/screens/3.png" alt="image1" width="250px" height="400px"/></a>
+									<img src="images/screens/3.png" alt="image1" width="220px" height="400px"/>
 								</li>
 								<li>
-									<a href="#" target="_blank"><img src="images/screens/4.png" alt="image1" width="250px" height="400px"/></a>
+									<img src="images/screens/4.png" alt="image1" width="220px" height="400px"/>
 								</li>
-							</ul>
+							</ul></center>
 						</div><!-- /wrapper -->
 					</td>
-				<td style="width: 50%;">
+				<td style="width: 60%;">
 			<div id="logo">
 				<img id="img_logo" src="images/LP_Klinco_logo.png" width="300px">
 			</div>
@@ -213,7 +248,7 @@
 			<img src="/images/LP_boton_verde_de_enviar.png" class="boton_sus" onclick="ajax.send();" alt="Envia email"/>
 			<input type="email_sus" class="txtbox" id="email" name="email" placeholder="Tu email aquí" required="required">
 			
-			<img src="/images/LP_quieres_mas_klincs.png" />
+			<center><img src="/images/LP_quieres_mas_klincs.png" /></center>
 			<br>
 			<br>
 			<table width="100%">
@@ -227,7 +262,7 @@
 				
 				</td>
 				<td width="30%">
-					<img src="/images/LP_logo_survey.png" />
+				<!--	<img src="/images/LP_logo_survey.png" /> -->
 				
 				</td>
 			
@@ -243,7 +278,7 @@
 				
 				</td>
 				<td width="30%">
-					<img src="/images/LP_mas_100_klincs.png"  />
+					<!--<img src="/images/LP_mas_100_klincs.png"  /> -->
 				
 				</td>
 			
@@ -292,11 +327,11 @@
 				<table width="100%">
 				<tr>
 				<td width="20%">
-					<img src="/images/LP_sensei.png	" />
+					<center><img src="/images/LP_sensei.png	" /> </center>
 				</td>
 				
 				<td width="80%">
-					<img src="/images/LP_burbuja_texto.png" />
+					<img src="/images/LP_burbuja_texto.png" class="burbuja" />
 				</td>
 				</tr>
 				
@@ -353,6 +388,7 @@
 				</p>
 				</div>	
 				
+
 			
 				
 			</div> 

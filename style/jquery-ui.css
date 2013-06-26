@@ -808,9 +808,9 @@ body .ui-tooltip {
 	color: #222222;
 }
 .ui-widget-header {
-	border: 1px solid rgb(235, 37, 37);
-	background: rgb(252, 19, 19) url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
-	color: rgb(32, 24, 24);
+	border: 1px solid rgb(255, 255, 255);
+	background: rgb(17, 72, 79) url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+	color: rgb(255, 255, 255);
 	font-weight: bold;
 }
 .ui-widget-header a {
@@ -936,11 +936,11 @@ body .ui-tooltip {
 	background-image: url(images/ui-icons_222222_256x240.png);
 }
 .ui-state-default .ui-icon {
-	background-image: url(images/ui-icons_888888_256x240.png);
+	background-image: url(/images/tache.jpg);
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
-	background-image: url(images/ui-icons_454545_256x240.png);
+	background-image: url(/images/tache.jpg);
 }
 .ui-state-active .ui-icon {
 	background-image: url(images/ui-icons_454545_256x240.png);

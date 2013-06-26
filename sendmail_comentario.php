@@ -19,16 +19,16 @@ include("class.smtp.php");
 			
 		$mail = new PHPMailer();
 
-		$mail->IsSMTP();                                      // configura SMTP
-		$mail->SMTPSecure = "ssl";
-		$mail->Host = "smtp.gmail.com";  // especifica server
-		$mail->Port = 465;
-		$mail->SMTPAuth = true;     // cambia autenticacion
-		$mail->Username = "pretxel100@gmail.com";  // SMTP nombre usuario
-		$mail->Password = "ESCOM2010%"; // SMTP contraseña
+		//$mail->IsSMTP();                                      // configura SMTP
+		//$mail->SMTPSecure = "ssl";
+		//$mail->Host = "smtp.gmail.com";  // especifica server
+		//$mail->Port = 465;
+		//$mail->SMTPAuth = true;     // cambia autenticacion
+		//$mail->Username = "xxx@gmail.com";  // SMTP nombre usuario
+		//$mail->Password = "xxx%"; // SMTP contraseña
 			
-		//$mail->AddAddress("hello@klinco.co", "Klinco");	
-		$mail->AddAddress("pretxel100@hotmail.com", "Klinco");
+		$mail->AddAddress("hello@klinco.co", "Klinco");	
+		//$mail->AddAddress("pretxel100@hotmail.com", "Klinco");
 		$mail->WordWrap = 50;
 		$mail->From = $email;
 		$mail->IsHTML(true);	
